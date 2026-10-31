@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "benchmark_version": 2,
+  "scenario_id": "DEV01",
+  "title": "Bounded Azure hub and spoke",
+  "location": "westeurope",
+  "resource_group": "rg-iac-experiment",
+  "hub": {
+    "key": "hub",
+    "name": "exp-hub",
+    "cidr": "10.120.0.0/16",
+    "subnet": {
+      "name": "hub-subnet",
+      "cidr": "10.120.5.0/24",
+      "min_usable_addresses": 1
+    }
+  },
+  "spokes": [
+    {
+      "key": "spoke1",
+      "name": "exp-spoke1",
+      "cidr": "10.121.0.0/16",
+      "subnet": {
+        "name": "spoke1-subnet",
+        "cidr": "10.121.7.0/24",
+        "min_usable_addresses": 1
+      }
+    }
+  ],
+  "security_pattern": "A"
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "benchmark_version": 2,
+  "scenario_id": "B07",
+  "title": "Two spokes admin SSH",
+  "location": "westeurope",
+  "resource_group": "rg-iac-experiment",
+  "hub": {
+    "key": "hub",
+    "name": "exp-hub",
+    "cidr": "10.0.0.0/16",
+    "subnet": {
+      "name": "admin-subnet",
+      "cidr": "10.0.1.0/24",
+      "min_usable_addresses": 1
+    }
+  },
+  "spokes": [
+    {
+      "key": "spoke1",
+      "name": "exp-spoke1",
+      "cidr": "10.1.0.0/16",
+      "subnet": {
+        "name": "spoke1-subnet",
+        "cidr": "10.1.0.0/24",
+        "min_usable_addresses": 1
+      }
+    },
+    {
+      "key": "spoke2",
+      "name": "exp-spoke2",
+      "cidr": "10.2.0.0/16",
+      "subnet": {
+        "name": "spoke2-subnet",
+        "cidr": "10.2.0.0/24",
+        "min_usable_addresses": 1
+      }
+    }
+  ],
+  "security_pattern": "B"
+}

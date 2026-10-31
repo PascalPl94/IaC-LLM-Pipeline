@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "msc-iac-experiments"
+version = "1.2.0"
+description = "Bounded Azure Terraform generation and reproducible baseline/guardrailed experiments"
+requires-python = ">=3.12,<3.16,!=3.13.*,!=3.14.*"
+dependencies = [
+  "pydantic==2.14.1", "bc-python-hcl2==0.4.3", "openai==2.54.0", "httpx==0.28.1",
+  "checkov==3.3.30",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.2", "ruff==0.17.1", "build==1.2.2.post1"]
+
+[project.scripts]
+iac-exp = "iac_experiments.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+iac_experiments = ["assets/*.json", "assets/prompts/*.txt", "assets/benchmark/*.json", "assets/dev/*.json", "assets/rejection/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["integration: runs installed Terraform and Checkov; no LLM calls or Azure changes"]
+
+[tool.ruff]
+line-length = 105
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
